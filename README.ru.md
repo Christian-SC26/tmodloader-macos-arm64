@@ -33,7 +33,7 @@ dyld: terminating because inserted dylib '.../steamloader.dylib' could not be lo
 
 ## Что меняет установщик
 
-1. Добавляет шесть строк в `start-tModLoader.sh`: при флаге `-arm64` они убирают `DYLD_INSERT_LIBRARIES`. Скрипт tModLoader `EnvironmentFix.sh` перед стартом игры возвращает эту переменную из `STEAM_DYLD_INSERT_LIBRARIES`, поэтому оверлей Steam и учёт времени в игре работают. Оригинал остаётся рядом как `start-tModLoader.sh.orig`.
+1. Добавляет в `start-tModLoader.sh` короткий блок: при флаге `-arm64` он убирает `DYLD_INSERT_LIBRARIES`. Скрипт tModLoader `EnvironmentFix.sh` перед стартом игры возвращает эту переменную из `STEAM_DYLD_INSERT_LIBRARIES`, поэтому Steam по-прежнему видит запущенную игру и подгружает свой оверлей. Оригинал остаётся рядом как `start-tModLoader.sh.orig`.
 2. Скачивает arm64-версию .NET в `tModLoader/dotnet_arm64` через `InstallDotNet.sh` из самого tModLoader, чтобы версия совпала с `tModLoader.runtimeconfig.json`.
 
 За пределами папки tModLoader установщик ничего не трогает. Без `-arm64` в параметрах запуска tModLoader запускается через Rosetta, как раньше.
